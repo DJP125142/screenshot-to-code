@@ -1,10 +1,10 @@
-# screenshot-to-code
+# screenshot-to-code 汉化版
 
-A simple tool to convert screenshots, mockups and Figma designs into clean, functional code using AI. **Now supporting Claude Sonnet 3.5 and GPT-4O!**
+一个简单的工具，使用人工智能将屏幕截图、实体模型和Figma设计转换为干净、实用的代码。现在支持Claude Sonnet 3.5 and GPT-4O！
 
 https://github.com/abi/screenshot-to-code/assets/23818/6cebadae-2fe3-4986-ac6a-8fb9db030045
 
-Supported stacks:
+支持的框架:
 
 - HTML + Tailwind
 - React + Tailwind
@@ -13,7 +13,9 @@ Supported stacks:
 - Ionic + Tailwind
 - SVG
 
-Supported AI models:
+[注：什么是Tailwind？](https://blog.csdn.net/snsHL9db69ccu1aIKl9r/article/details/111026790)
+
+支持的AI模型:
 
 - Claude Sonnet 3.5 - Best model!
 - GPT-4O - also recommended!
@@ -22,34 +24,34 @@ Supported AI models:
 - Claude 3 Sonnet
 - DALL-E 3 for image generation
 
-See the [Examples](#-examples) section below for more demos.
+更多演示请参见下面的[示例](#-示例)部分
 
-We also just added experimental support for taking a video/screen recording of a website in action and turning that into a functional prototype. 
+我们还增加了录屏支持，用于录制网站运行中的视频/屏幕记录，并将其转化为功能原型。
 
 ![google in app quick 3](https://github.com/abi/screenshot-to-code/assets/23818/8758ffa4-9483-4b9b-bb66-abd6d1594c33)
 
-[Learn more about video here](https://github.com/abi/screenshot-to-code/wiki/Screen-Recording-to-Code).
+[点击此处了解更多视频信息](https://github.com/abi/screenshot-to-code/wiki/Screen-Recording-to-Code).
 
-[Follow me on Twitter for updates](https://twitter.com/_abi_).
+[推特上关注我查看最新更新](https://twitter.com/_abi_).
 
-## Sponsors
+## 赞助商
 
 <a href="https://konghq.com/products/kong-konnect?utm_medium=referral&utm_source=github&utm_campaign=platform&utm_content=screenshot-to-code" target="_blank" title="Kong - powering the API world"><img src="https://picoapps.xyz/s2c-sponsors/Kong-GitHub-240x100.png"></a>
 
-## 🚀 Hosted Version
+## 🚀 官网
 
-[Try it live on the hosted version (paid)](https://screenshottocode.com).
+[前往官网体验](https://screenshottocode.com).
 
-## 🛠 Getting Started
+## 🛠 入门指南
 
-The app has a React/Vite frontend and a FastAPI backend. 
+该应用前端使用 React/Vite & 后端使用 FastAPI. 
 
-Keys needed:
+需要的密钥:
 
-* [OpenAI API key with access to GPT-4](https://github.com/abi/screenshot-to-code/blob/main/Troubleshooting.md)
-* Anthropic key (optional) - only if you want to use Claude Sonnet, or for experimental video support.
+* [GPT-4 的 OpenAI API key](https://github.com/abi/screenshot-to-code/blob/main/Troubleshooting.md)
+* Anthropic key (可选) - 只有当你需要使用 Claude Sonnet, 或者是需要使用录制能力时才需要.
 
-Run the backend (I use Poetry for package management - `pip install poetry` if you don't have it):
+后端部署 (使用 Poetry 做包管理 - 如果你没有安装可使用`pip install poetry` 安装poetry):
 
 ```bash
 cd backend
@@ -59,9 +61,9 @@ poetry shell
 poetry run uvicorn main:app --reload --port 7001
 ```
 
-If you want to use Anthropic, add `ANTHROPIC_API_KEY` to `backend/.env`. You can also set up the keys using the settings dialog on the front-end (click the gear icon after loading the frontend).
+如果要使用Anthropic，将`ANTHROPIC_API_KEY`添加到`backend/.env`中，也可以使用前端的设置对话框设置密钥(加载前端后点击齿轮设置图标)。
 
-Run the frontend:
+前端部署:
 
 ```bash
 cd frontend
@@ -69,11 +71,11 @@ yarn
 yarn dev
 ```
 
-Open http://localhost:5173 to use the app.
+访问 http://localhost:5173 来使用本地应用.
 
-If you prefer to run the backend on a different port, update VITE_WS_BACKEND_URL in `frontend/.env.local`
+如果你想修改端口号可以更新 `frontend/.env.local` 里的VITE_WS_BACKEND_URL.
 
-For debugging purposes, if you don't want to waste GPT4-Vision credits, you can run the backend in mock mode (which streams a pre-recorded response):
+调试模式下, 如果你不想浪费 GPT4-Vision credits, 可以在模拟模式下运行后端(这将流式传输预先录制的响应):
 
 ```bash
 MOCK=true poetry run uvicorn main:app --reload --port 7001
@@ -81,25 +83,26 @@ MOCK=true poetry run uvicorn main:app --reload --port 7001
 
 ## Docker
 
-If you have Docker installed on your system, in the root directory, run:
+如果您的系统上安装了Docker，可以使用Docker部署，在根目录下运行:
 
 ```bash
 echo "OPENAI_API_KEY=sk-your-key" > .env
 docker-compose up -d --build
 ```
 
-The app will be up and running at http://localhost:5173. Note that you can't develop the application with this setup as the file changes won't trigger a rebuild.
+该应用程序将在 http://localhost:5173 启动并运行。请注意，您不能用这种设置开发应用程序，因为文件更改不会触发重新构建。
 
-## 🙋‍♂️ FAQs
 
-- **I'm running into an error when setting up the backend. How can I fix it?** [Try this](https://github.com/abi/screenshot-to-code/issues/3#issuecomment-1814777959). If that still doesn't work, open an issue.
-- **How do I get an OpenAI API key?** See https://github.com/abi/screenshot-to-code/blob/main/Troubleshooting.md
-- **How can I configure an OpenAI proxy?** - If you're not able to access the OpenAI API directly (due to e.g. country restrictions), you can try a VPN or you can configure the OpenAI base URL to use a proxy: Set OPENAI_BASE_URL in the `backend/.env` or directly in the UI in the settings dialog. Make sure the URL has "v1" in the path so it should look like this:  `https://xxx.xxxxx.xxx/v1`
-- **How can I update the backend host that my front-end connects to?** - Configure VITE_HTTP_BACKEND_URL and VITE_WS_BACKEND_URL in front/.env.local For example, set VITE_HTTP_BACKEND_URL=http://124.10.20.1:7001
-- **Seeing UTF-8 errors when running the backend?** - On windows, open the .env file with notepad++, then go to Encoding and select UTF-8. 
-- **How can I provide feedback?** For feedback, feature requests and bug reports, open an issue or ping me on [Twitter](https://twitter.com/_abi_).
+## 🙋‍♂️ 常见问题
 
-## 📚 Examples
+- **我在设置后端时遇到了一个错误。我该怎么修？** [看看这个](https://github.com/abi/screenshot-to-code/issues/3#issuecomment-1814777959). 如果还不行，就提个issue.
+- **如何获得OpenAI API密钥？** 参阅 https://github.com/abi/screenshot-to-code/blob/main/Troubleshooting.md
+- **如何配置OpenAI代理？** - 如果您无法直接访问OpenAI API(由于国家限制等原因)，您可以尝试VPN，或者您可以将OpenAI基本URL配置为使用代理:在: `backend/.env` 里设置OPENAI_BASE_URL，或者直接在设置对话框的UI中设置。请确保URL的路径中包含“v1”，因此它应该是这样的:  `https://xxx.xxxxx.xxx/v1`
+- **如何修改我的前端请求到的后端地址？** - 在front/.env.local中配置VITE_HTTP_BACKEND_URL和VITE_WS_BACKEND_URL例如设置VITE_HTTP_BACKEND_URL=http://124.10.20.1:7001
+- **运行后端时看到UTF-8错误？** - 在windows上使用notepad++打开.env文件，然后设置编码格式选择UTF-8. 
+- **我如何提供反馈？** 如需反馈、功能请求和错误报告，请在[Twitter](https://twitter.com/_abi_)上联系我.
+
+## 📚 示例
 
 **NYTimes**
 
@@ -115,6 +118,6 @@ https://github.com/abi/screenshot-to-code/assets/23818/503eb86a-356e-4dfc-926a-d
 
 https://github.com/abi/screenshot-to-code/assets/23818/3fec0f77-44e8-4fb3-a769-ac7410315e5d
 
-## 🌍 Hosted Version
+## 🌍 托管版本
 
-🆕 [Try it here (paid)](https://screenshottocode.com). Or see [Getting Started](#-getting-started) for local install instructions to use with your own API keys.
+🆕 [前往试用 (付费)](https://screenshottocode.com). 或者参阅 [入门指南](#-getting-started) 以获得与您自己的API密钥一起使用的本地安装说明。
